@@ -53,9 +53,9 @@ public class StopwordAnnotator implements Annotator, CoreAnnotation<Pair<Boolean
 
         if (this.props.containsKey(STOPWORDS_LIST)) {
             String stopwordList = props.getProperty(STOPWORDS_LIST);
-            this.stopwords = getStopWordList(Version.LUCENE_36, stopwordList, ignoreCase);
+            this.stopwords = getStopWordList(Version.LUCENE_7_5_0, stopwordList, ignoreCase);
         } else {
-            this.stopwords = new CharArraySet(Version.LUCENE_36, StopAnalyzer.ENGLISH_STOP_WORDS_SET, ignoreCase);
+            this.stopwords = new CharArraySet(Version.LUCENE_7_5_0, StopAnalyzer.ENGLISH_STOP_WORDS_SET, ignoreCase);
         }
     }
 
