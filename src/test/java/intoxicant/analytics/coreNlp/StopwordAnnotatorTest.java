@@ -6,6 +6,7 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.Pair;
 import org.apache.lucene.analysis.StopAnalyzer;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.util.Version;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,7 +99,7 @@ public class StopwordAnnotatorTest {
         List<CoreLabel> tokens = document.get(CoreAnnotations.TokensAnnotation.class);
 
         //get the standard lucene stopword set
-        Set<?> stopWords = StopAnalyzer.ENGLISH_STOP_WORDS_SET;
+        Set<?> stopWords = EnglishAnalyzer.ENGLISH_STOP_WORDS_SET;
 
         for (CoreLabel token : tokens) {
 
@@ -131,7 +132,7 @@ public class StopwordAnnotatorTest {
         props.setProperty(StopwordAnnotator.IGNORE_STOPWORD_CASE, String.valueOf(true));
 
         //get the custom stopword set
-        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_36, customStopWordList, true);
+        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_7_5_0, customStopWordList, true);
 
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props, false);
         Annotation document = new Annotation(example);
@@ -171,7 +172,7 @@ public class StopwordAnnotatorTest {
         props.setProperty(StopwordAnnotator.IGNORE_STOPWORD_CASE, String.valueOf(true));
 
         //get the custom stopword set
-        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_36, customStopWordList, true);
+        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_7_5_0, customStopWordList, true);
 
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props, false);
         Annotation document = new Annotation(example);
@@ -220,7 +221,7 @@ public class StopwordAnnotatorTest {
         props.setProperty(StopwordAnnotator.CHECK_LEMMA, "true");
 
         //get the custom stopword set
-        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_36, customStopWordList.toLowerCase(), STOPWORD_CASE_ISIGNORED);
+        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_7_5_0, customStopWordList.toLowerCase(), STOPWORD_CASE_ISIGNORED);
 
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props, false);
         Annotation document = new Annotation(example.toUpperCase());
@@ -254,7 +255,7 @@ public class StopwordAnnotatorTest {
         props.setProperty(StopwordAnnotator.CHECK_LEMMA, "true");
 
         //get the custom stopword set
-        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_36, customStopWordList.toLowerCase(), STOPWORD_CASE_ISIGNORED);
+        Set<?> stopWords = StopwordAnnotator.getStopWordList(Version.LUCENE_7_5_0, customStopWordList.toLowerCase(), STOPWORD_CASE_ISIGNORED);
 
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props, false);
         Annotation document = new Annotation(example.toUpperCase());
@@ -302,7 +303,7 @@ public class StopwordAnnotatorTest {
         props.setProperty(StopwordAnnotator.CHECK_LEMMA, "true");
 
         //get the custom stopword set
-        Set<?> stopWords = StopAnalyzer.ENGLISH_STOP_WORDS_SET;
+        Set<?> stopWords = EnglishAnalyzer.ENGLISH_STOP_WORDS_SET;
 
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props, false);
         Annotation document = new Annotation(example.toUpperCase());
