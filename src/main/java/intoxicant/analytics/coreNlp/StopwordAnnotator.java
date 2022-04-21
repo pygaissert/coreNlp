@@ -1,5 +1,6 @@
 package intoxicant.analytics.coreNlp;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -102,7 +103,7 @@ public class StopwordAnnotator implements Annotator, CoreAnnotation<Pair<Boolean
 
     public static CharArraySet getStopWordList(Version luceneVersion, String stopwordList, boolean ignoreCase) {
         String[] terms = stopwordList.split(",");
-        CharArraySet stopwordSet = new CharArraySet(List.of(terms), ignoreCase);
+        CharArraySet stopwordSet = new CharArraySet(Arrays.asList(terms), ignoreCase);
 //        Collections.addAll(stopwordSet, terms);
         return CharArraySet.unmodifiableSet(stopwordSet);
     }
