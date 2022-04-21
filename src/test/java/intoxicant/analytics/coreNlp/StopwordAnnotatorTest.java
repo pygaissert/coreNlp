@@ -1,21 +1,23 @@
 package intoxicant.analytics.coreNlp;
 
-import edu.stanford.nlp.ling.CoreAnnotations;
-import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.pipeline.Annotation;
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import edu.stanford.nlp.util.Pair;
-import org.apache.lucene.analysis.StopAnalyzer;
-import org.apache.lucene.analysis.en.EnglishAnalyzer;
-import org.apache.lucene.util.Version;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.apache.lucene.util.Version;
+import org.junit.Before;
+import org.junit.Test;
+
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.Pair;
 
 /**
  * User: jconwell
