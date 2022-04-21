@@ -1,5 +1,15 @@
 package intoxicant.analytics.coreNlp;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
+import org.apache.lucene.analysis.CharArraySet;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.apache.lucene.util.Version;
+
 import edu.stanford.nlp.ling.CoreAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
@@ -7,11 +17,6 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.Annotator;
 import edu.stanford.nlp.util.Pair;
-import org.apache.lucene.analysis.CharArraySet;
-import org.apache.lucene.analysis.StopAnalyzer;
-import org.apache.lucene.util.Version;
-
-import java.util.*;
 
 /**
  * User: jconwell
@@ -55,7 +60,7 @@ public class StopwordAnnotator implements Annotator, CoreAnnotation<Pair<Boolean
             String stopwordList = props.getProperty(STOPWORDS_LIST);
             this.stopwords = getStopWordList(Version.LUCENE_7_5_0, stopwordList, ignoreCase);
         } else {
-            this.stopwords = new CharArraySet(Version.LUCENE_7_5_0, StopAnalyzer.ENGLISH_STOP_WORDS_SET, ignoreCase);
+            this.stopwords = new CharArraySet(EnglishAnalyzer.ENGLISH_STOP_WORDS_SET, ignoreCase);
         }
     }
 
@@ -97,8 +102,8 @@ public class StopwordAnnotator implements Annotator, CoreAnnotation<Pair<Boolean
 
     public static CharArraySet getStopWordList(Version luceneVersion, String stopwordList, boolean ignoreCase) {
         String[] terms = stopwordList.split(",");
-        CharArraySet stopwordSet = new CharArraySet(luceneVersion, terms.length, ignoreCase);
-        Collections.addAll(stopwordSet, terms);
+        CharArraySet stopwordSet = new CharArraySet(List.of(terms), ignoreCase);
+//        Collections.addAll(stopwordSet, terms);
         return CharArraySet.unmodifiableSet(stopwordSet);
     }
 }
